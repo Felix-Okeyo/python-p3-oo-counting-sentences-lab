@@ -30,8 +30,14 @@ class MyString:
     
     # Method to count the total number of sentences in the string
     def count_sentences(self):
-        return self.value.count('.') + self.value.count('?') + self.value.count('!')
-
+        if self.value is None:
+            return 0
+        
+        # Split the string using periods, question marks, and exclamation marks as separators
+        sentences = [sentence.strip() for sentence in self.value.replace('?', '.').replace('!', '.').split('.') if sentence.strip()]
+        return len(sentences)
+      
+      
 # Create an instance of the MyString class with a sample string
 my_string = MyString("Hello world! One! Two. Three?")
 
